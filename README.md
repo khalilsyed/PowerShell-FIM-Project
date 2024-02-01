@@ -97,4 +97,4 @@ elseif ($response -eq "B".ToUpper()) {
     }
 }
 
-![Run the script and select B](https://i.imgur.com/bsDWPRo.png) 
+
