@@ -97,4 +97,48 @@ elseif ($response -eq "B".ToUpper()) {
     }
 }
 
+```
+<h3>DEMO</h3>
+
+<b>The script starts by displaying a prompt to the user, asking whether they want to:
+
+A) Collect a new baseline (hashes of files in a target folder) or
+
+B) Begin monitoring files with a saved baseline. <b>
+
+<img src="https://i.imgur.com/ZoqHxFL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
+<br>
+<b>The user's response is read, and based on the choice:
+
+If 'A' is chosen, it erases the existing "baseline.txt" file (if it exists) and calculates the SHA512 hash for each file in the ".\FIM" directory. The file paths and corresponding hashes are stored in "baseline.txt."
+
+If 'B' is chosen, it loads the baseline information from "baseline.txt" into a dictionary ($fileHashDictionary). It then enters a continuous monitoring loop where it periodically checks for changes in the files in the ".\FIM" directory. 
+
+In our demo, we will select "B".
+<b><br/>
+<br>
+<img src="https://i.imgur.com/ocOHNna.png" height="80%" width="80%" alt="Disk Sanitization Steps"/><br/>
+<br>
+<b>For each file in the directory, it calculates the current hash and compares it with the hash stored in the baseline.
+If a file has been created, it notifies the user.
+If a file has changed, it notifies the user that the file has been compromised.
+It also checks if any files present in the baseline have been deleted and notifies the user if a deletion is detected. <b><br/>
+<br>
+<img src="https://i.imgur.com/1HvH67c.png" height="80%" width="80%" alt="Disk Sanitization Steps"/><br/>
+<br>
+<img src="https://i.imgur.com/4TstAkw.png" height="80%" width="80%" alt="Disk Sanitization Steps"/><br/>
+<br>
+<img src="https://i.imgur.com/4o66FDJ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/><br/>
+<br>
+<img src="https://i.imgur.com/n42dsF6.png" height="80%" width="80%" alt="Disk Sanitization Steps"/><br/>
+<br>
+<b> Notification via Write-Host:
+
+Notifications about file status changes (creation, modification, deletion) are displayed using Write-Host with different foreground and background colors to distinguish between different events.
+Infinite Loop:
+
+The script contains an infinite loop (while ($true)) that continuously monitors files. It uses Start-Sleep to introduce a one-second delay between iterations.
+This script can be used as a basic file integrity monitoring tool, helping to detect changes in files within a specified directory over time. The baseline information serves as a reference for the initial state of files, and any subsequent changes trigger notifications. <b><br/>
+
 
